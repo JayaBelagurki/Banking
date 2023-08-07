@@ -1,0 +1,68 @@
+
+        <section class="container">
+            <h1>Gallery Page</h1>
+             <img style="height: 60px;" src="https://s40424.pcdn.co/in/wp-content/uploads/2022/03/What-is-project-management-Meaning-and-Definition-of-Project-Management-1.jpg">
+              <img style="height: 60px;" src="https://s40424.pcdn.co/in/wp-content/uploads/2022/03/What-is-project-management-Meaning-and-Definition-of-Project-Management-1.jpg">
+               <img style="height: 60px;" src="https://s40424.pcdn.co/in/wp-content/uploads/2022/03/What-is-project-management-Meaning-and-Definition-of-Project-Management-1.jpg">
+        
+                 
+               <span style="float: right;font-weight: bold;">
+                <button type="button" class="btn btn-warning" style="margin-right: 20px;">Profile</button>
+        
+                <button  type="button" class="btn btn-primary" style="margin-right: 100px;">Available Credit Card</button>
+        
+                 
+                </span>
+
+   	   <hr/>
+   	   <br/><br/>    
+
+   	  	 <table class="table table-bordered">
+    <thead>
+    
+      <tr>
+        <td>
+            <img style="height: 180px;margin-bottom: 3px;" src="gimage?iid=${item.id}" alt="No image is present">
+                  Filename : <b> </b>  &nbsp; &nbsp;  Filesize : <b> </b>
+                         <input type="hidden"  name="gid" value="${item.id}">    
+                        <input onchange="uploadFile('galleryForm${item.id}');" type="file" name="photo" class="form-control mr-2" style="width: 95%"/>
+            </td>
+         
+      </tr>
+         
+         
+           <tr>
+          <td>
+          Add New Photo : 
+          <img style="height: 180px;margin-bottom: 3px;" [src]="cphoto" alt="No image is present">
+                <form name="newGalleryForm">
+                     <input type="hidden"  name="gid" value="0">    
+                      <input (change)="onFileChange($event);" type="file" name="photo" class="form-control mr-2" style="width: 95%"/>
+                      <button (click)="uploadFile();" type="button" class="btn btn-warning" style="margin-right: 20px;">Upload</button>
+               </form>
+          </td>
+      </tr>
+         
+    </thead>
+    <tbody>
+</tbody>
+</table>
+  Album 
+ <table class="table table-bordered">
+        <tr  *ngFor="let item of mapData;let row =index ">
+             
+              <td>
+                   <span>Name : <b>{{item.name}}</b> </span>
+                  <img src="data:image/png;base64,{{item.photo}}" style="height: 100px;;">
+                  <span>Filesize : <b>{{item.size}}</b> </span>
+                  <img src="data:image/png;base64,{{mapData[row]?.photo}}" style="height: 100px;;">
+                  <img src="data:image/png;base64,{{mapData[row+1]?.photo}}" style="height: 100px;;">
+                  <img src="data:image/png;base64,{{mapData[row+2]?.photo}}" style="height: 100px;;">
+                  <img src="data:image/png;base64,{{mapData[row+3]?.photo}}" style="height: 100px;;">
+              </td>     
+             
+        </tr>
+  </table>  
+   
+   <br/><br/>
+   </section>

@@ -1,37 +1,3 @@
-<header style="background-color: yellow;height: 30px;">
-</header>
+<app-header></app-header>
 
-<div  class="container">
-  <h2>Signup Page</h2>
-  
-  <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSni4W_ssx3U1KqS7a7wY_Q4NVU2hW3CP-1jA&usqp=CAU"  style="height: 180px;"/>
-     <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSni4W_ssx3U1KqS7a7wY_Q4NVU2hW3CP-1jA&usqp=CAU"  style="height: 180px;"/>
-       <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSni4W_ssx3U1KqS7a7wY_Q4NVU2hW3CP-1jA&usqp=CAU"  style="height: 180px;"/>
-      <hr/>
-      
-      <span style="color:red;font-weight: bold;font-size: 20px;"  id="emessage">
-        {{message}}
-      </span>
-      <form action="login" method="post">
-      
-       <div class="form-group" style="width: 60%">
-         <label>Username</label>
-         <input #pusername  type="text"  id="username"  name="username" class="form-control">
-        
-      </div>
-      
-      <div class="form-group" style="width: 60%">
-         <label>Password</label>
-         <input #ppassword id="password" type="password" name="password" class="form-control">
-      </div>
-      
-        <div class="form-group" style="width: 60%">
-       <button type="button" class="btn btn-primary"  (click)="auth(pusername,ppassword);">Login</button>
-          &nbsp;&nbsp;
-           <button type="reset" class="btn btn-danger">Clear</button>
-                
-      </div>
-      </form>
-      
-
-</div>
+<router-outlet></router-outlet>
