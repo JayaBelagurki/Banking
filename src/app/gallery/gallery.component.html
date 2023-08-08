@@ -39,7 +39,10 @@
                      <input type="hidden"  name="gid" value="0">    
                       <input (change)="onFileChange($event);" type="file" name="photo" class="form-control mr-2" style="width: 95%"/>
                       <button (click)="uploadFile();" type="button" class="btn btn-warning" style="margin-right: 20px;">Upload</button>
-               </form>
+                  
+                       
+              
+                  </form>
           </td>
       </tr>
          
@@ -55,10 +58,11 @@
                    <span>Name : <b>{{item.name}}</b> </span>
                   <img src="data:image/png;base64,{{item.photo}}" style="height: 100px;;">
                   <span>Filesize : <b>{{item.size}}</b> </span>
+                 
                   <img src="data:image/png;base64,{{mapData[row]?.photo}}" style="height: 100px;;">
-                  <img src="data:image/png;base64,{{mapData[row+1]?.photo}}" style="height: 100px;;">
-                  <img src="data:image/png;base64,{{mapData[row+2]?.photo}}" style="height: 100px;;">
-                  <img src="data:image/png;base64,{{mapData[row+3]?.photo}}" style="height: 100px;;">
+
+                        <button (click)="deleteGallary(item.id);" type="button" class="btn btn-danger" style="float:right;">DEL</button>
+                        <button (click)="editGallary(item);" type="button" class="btn btn-success" style="float:right;">EDIT</button>
               </td>     
              
         </tr>

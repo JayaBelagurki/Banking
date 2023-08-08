@@ -16,6 +16,8 @@ name:string='';
  // id : any;
 
  private selectFile:any;
+
+ private gid:number=0;
   
  mapData : any =[]
 
@@ -26,13 +28,31 @@ constructor(private activatedRoute:ActivatedRoute,private http:HttpClient,privat
 
  }
 
+ public  editGallary(item:Gallery) : void {
+     this.cphoto='data:image/png;base64,'+item.photo;
+     this.gid=item.id;
+    // this.selectFile=new File([this.cphoto], item.name,{ type: "image/png" });
+ }
+
+ public deleteGallary(id:number){
+    ///REST API CALL AND DELETE
+    const uri=`${Constant.BASE_URI}/gallery/${id}`;
+    this.http.delete(uri).subscribe(data=>{
+      this.fetch();
+    });
+
+ }
+
+ private fetch(){
+  const uri=`${Constant.BASE_URI}/gallery`;
+      this.http.get(uri).subscribe(data=>{
+          this.mapData=data;
+      });
+ }
+
 ngOnInit(): void {
  
-  const uri=`${Constant.BASE_URI}/gallery`;
-  this.http.get(uri).subscribe(data=>{
-      console.log(data);
-      this.mapData=data;
-  });
+  this.fetch();
 
 }
 
@@ -64,21 +84,15 @@ uploadFile(){
   //FormData is java script class which is used to send file
   const formData = new FormData();
   formData.append('photo', this.selectFile);
-  formData.append('gid', "0");
+  formData.append('gid', ""+this.gid);
   
   const uri=`${Constant.BASE_URI}/gallery/upload`;
 
   this.http.post(uri, formData)
     .subscribe(res => {
-      console.log(res);
-      const uri=`${Constant.BASE_URI}/gallery`;
-      this.http.get(uri).subscribe(data=>{
-          console.log(data);
-         
-          this.mapData=data;
-      });
-
-    })
+      this.fetch();
+      this.gid=0;
+ })
     console.log(formData);
 
 }
