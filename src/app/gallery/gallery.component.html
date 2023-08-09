@@ -51,6 +51,15 @@
 </tbody>
 </table>
   Album 
+
+  <hr/>
+  <select (change)="sort();" class="form-control"  [(ngModel)]="sortType" style="width: 30%;">
+        <option value="name">Name</option>
+        <option value="filesize">Filesize</option>
+        <option value="createdDate">Created Date</option>
+ 
+  </select>
+ <br/>
  <table class="table table-bordered">
         <tr  *ngFor="let item of mapData;let row =index ">
              
@@ -58,7 +67,7 @@
                    <span>Name : <b>{{item.name}}</b> </span>
                   <img src="data:image/png;base64,{{item.photo}}" style="height: 100px;;">
                   <span>Filesize : <b>{{item.size}}</b> </span>
-                 
+                  <span>Created Date : <b>{{item.doe}}</b> </span>
                   <img src="data:image/png;base64,{{mapData[row]?.photo}}" style="height: 100px;;">
 
                         <button (click)="deleteGallary(item.id);" type="button" class="btn btn-danger" style="float:right;">DEL</button>
