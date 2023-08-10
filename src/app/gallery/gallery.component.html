@@ -52,25 +52,53 @@
 </table>
   Album 
 
-  <hr/>
-  <select (change)="sort();" class="form-control"  [(ngModel)]="sortType" style="width: 30%;">
+
+  <br/>
+
+  <table class="table">
+      <tr>
+            <td>
+  <select (change)="sort();" class="form-control"  [(ngModel)]="sortType" style="width: 90%;">
         <option value="name">Name</option>
         <option value="filesize">Filesize</option>
         <option value="createdDate">Created Date</option>
  
   </select>
- <br/>
+</td>
+
+      <td>
+   <input type="text" name="searchText" class="form-control" style="float: inline;"/> 
+   </td>
+   <td>
+   <button  type="button" class="btn btn-primary" style="float:inline;">Clear</button>
+</td>
+</tr>
+</table>
+<hr/>
+
  <table class="table table-bordered">
         <tr  *ngFor="let item of mapData;let row =index ">
              
               <td>
+                  <table class="table">
+                        <tr>
+                              <td>
                    <span>Name : <b>{{item.name}}</b> </span>
-                  <img src="data:image/png;base64,{{item.photo}}" style="height: 100px;;">
-                  <span>Filesize : <b>{{item.size}}</b> </span>
-                  <span>Created Date : <b>{{item.doe}}</b> </span>
-                  <img src="data:image/png;base64,{{mapData[row]?.photo}}" style="height: 100px;;">
 
-                        <button (click)="deleteGallary(item.id);" type="button" class="btn btn-danger" style="float:right;">DEL</button>
+                   <br/>
+                  <span>Filesize : <b>{{item.size}}</b> </span>
+                  <br/>
+                  <span>Created Date : <b>{{item.doe}}</b> </span>
+                  </td>
+                  <td style="width: 35%;">
+                  <img src="data:image/png;base64,{{item.photo}}" style="height: 100px;;">
+                </td>
+                </tr>
+                </table>
+
+                <td>
+                        <button (click)="deleteGallary(item.id);" type="button" class="btn btn-danger" style="float:right;margin-right: 3px;">DEL</button>
+                        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
                         <button (click)="editGallary(item);" type="button" class="btn btn-success" style="float:right;">EDIT</button>
               </td>     
              

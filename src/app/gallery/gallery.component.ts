@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Gallery } from '../model/gallery.model';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Constant } from 'src/environments/environment';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -46,12 +46,16 @@ constructor(private activatedRoute:ActivatedRoute,private http:HttpClient,privat
  }
 
  private fetch(){
-  const uri=`${Constant.BASE_URI}/gallery`;
-      this.http.get(uri).subscribe(data =>{
+      let uri=`${Constant.BASE_URI}/gallery`;
+      let queryParams = new HttpParams();
+      if(this.sortType!==null || this.sortType!==''){
+       
+        queryParams = queryParams.append("sortBy",this.sortType);
+      }
+       
+      this.http.get(uri, {params:queryParams}).subscribe(data =>{
          this.mapData=data;
-          this.mapData=this.mapData.sort((s1:any,s2:any)=>{
-            return s1.name.toLowerCase().localeCompare(s2.name.toLowerCase());
-          });
+          
       });
  }
 
@@ -71,9 +75,8 @@ constructor(private activatedRoute:ActivatedRoute,private http:HttpClient,privat
      }
 
      else if(this.sortType==='createdDate'){
-      this.mapData=this.mapData.sort((s1:any,s2:any)=>{
-        return s2.doe-s1.doe;
-     });
+      
+          this.fetch();
      }
  }
 
